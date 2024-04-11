@@ -2,15 +2,85 @@
     {
         "number": 14,
         "title": "O, ry tany rehetra avia izao",
-        "verses": [],
+        "verses": [
+            {
+                "number": "1",
+                "lines": [
+                    "1. O, ry tany rehetra, avia izao",
+                    "Hidera ny Tompo Mpanavotra anao",
+                    "Ny Tompo miantso antsika hankao",
+                    "Anatrehany mba hohasoaviny ao:"
+                ]
+            },
+            {
+                "number": "2",
+                "lines": [
+                    "2. He, Jehovah miantra antsika izao",
+                    "Ka dia manolotra antsika indray",
+                    "Ny endriny mbamin'ny aina vaovao;",
+                    "Eny, Izy manaiky tokoa ho Ray",
+                    "Dera, laza, sns..."
+                ]
+            },
+            {
+                "number": "3",
+                "lines": [
+                    "3. Asandrato ny feo hihoby hoe:",
+                    "Isaorana mandrakizay Hianao",
+                    "Ry Tompo mahery, Izay manome",
+                    "Ho anay olom-bery ny aina vaovao:",
+                    "Dera, laza, sns..."
+                ]
+            }
+        ],
         "has_refrain": false,
-        "refrain": ""
+        "refrain": []
     },
     {
         "number": 15,
         "title": "Avia hankalaza",
-        "verses": [],
+        "verses": [
+            {
+                "number": "1",
+                "lines": [
+                    "1. Avia hankalaza",
+                    "Ny Tompo lehibe;",
+                    "Fa feno hery, haja",
+                    "Jehovah Marina e",
+                    "Andeha mitambara,",
+                    "Ry vazan-tany o!",
+                    "Miankohofa tsara",
+                    "Hanaja Azy izao!"
+                ]
+            },
+            {
+                "number": "2",
+                "lines": [
+                    "2. Ry Tomponay Tsitoha,",
+                    "Indreto izahay,",
+                    "Manondrika ny loha,",
+                    "Midera Anao, ry Ray,",
+                    "Ny fonay sy ny hery,",
+                    "Fanahy, saina koa,",
+                    "Omena Anao irery,",
+                    "Ka anjakao tokoa."
+                ]
+            },
+            {
+                "number": "3",
+                "lines": [
+                    "3. Mpanjaka tena hendry",
+                    "Hianao, ry Tomponay",
+                    "Ka tena mahakendry",
+                    "Izay hahasoa anay;",
+                    "Na misy toa mangidy",
+                    "Ny fitondranao, soa,",
+                    "Ny saina sy safidy",
+                    "Manaiky anao tokoa."
+                ]
+            }
+        ],
         "has_refrain": false,
-        "refrain": ""
+        "refrain": []
     }
 ]

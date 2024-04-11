@@ -1,5 +1,12 @@
 import json
 
+def isinteger(a):
+    try:
+        int(a)
+        return True
+    except ValueError:
+        return False
+
 def parse_songs(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
         lines = file.readlines()
@@ -12,7 +19,7 @@ def parse_songs(file_path):
         if not line:
             continue
 
-        if line[0].isdigit() and '-' in line:
+        if isinteger(line[0]) and '-' in line:
             print('Song title:', line)
             if current_song:
                 songs.append(current_song)
@@ -22,13 +29,11 @@ def parse_songs(file_path):
                 'title': song_title.strip(),
                 'verses': [],
                 'has_refrain': False,
-                'refrain': ''
+                'refrain': []
             }
-        elif line.startswith('Fiv'):
-            current_song['has_refrain'] = True
-            current_song['refrain'] = line.split(':', 1)[1].strip()
-        elif line.isdigit() and current_song:
-            current_verse = {'number': int(line), 'lines': []}
+        elif isinteger(line[0]) and '.' in line:
+            current_verse = {'number': line[0], 'lines': []}
+            current_verse['lines'].append(line)
             current_song['verses'].append(current_verse)
         elif current_song and current_verse:
             current_verse['lines'].append(line)
@@ -51,3 +56,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
