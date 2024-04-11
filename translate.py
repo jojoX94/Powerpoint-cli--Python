@@ -14,12 +14,16 @@ def parse_songs(file_path):
     songs = []
     current_song = None
     current_verse = None
+    append_to_refrain = False
     for line in lines:
         line = line.strip()
         if not line:
             continue
 
-        if isinteger(line[0]) and '-' in line:
+        if line.startswith('Généré') or line.startswith('Page'):
+            continue
+
+        if isinteger(line[0]) and ' - ' in line:
             print('Song title:', line)
             if current_song:
                 songs.append(current_song)
@@ -31,10 +35,18 @@ def parse_songs(file_path):
                 'has_refrain': False,
                 'refrain': []
             }
+            append_to_refrain = False
         elif isinteger(line[0]) and '.' in line:
             current_verse = {'number': line[0], 'lines': []}
             current_verse['lines'].append(line)
             current_song['verses'].append(current_verse)
+            append_to_refrain = False
+        elif line.startswith('Fiv'):
+            current_song['has_refrain'] = True
+            current_song['refrain'].append(line)
+            append_to_refrain = True
+        elif current_song and append_to_refrain:
+            current_song['refrain'].append(line)
         elif current_song and current_verse:
             current_verse['lines'].append(line)
 
@@ -56,5 +68,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 
