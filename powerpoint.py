@@ -10,7 +10,7 @@ def remove_bullet_point(placeholders):
             paragraph._pPr.insert(0, etree.Element("{http://schemas.openxmlformats.org/drawingml/2006/main}buNone"))
 
 def generate_pptx(songs, output_file):
-    prs = pptx.Presentation()
+    prs = pptx.Presentation("theme.pptx")
 
     for song in songs:
         slide_layout = prs.slide_layouts[5]  # Utilise le layout pour un titre et un contenu
