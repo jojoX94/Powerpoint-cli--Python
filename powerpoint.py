@@ -1,8 +1,16 @@
-from pptx import Presentation
+import pptx
+from lxml import etree
 import json
 
+def remove_bullet_point(placeholders):
+    for ph in placeholders:
+        for paragraph in ph.text_frame.paragraphs:
+            paragraph.font.bold = False
+            paragraph.font.size = pptx.util.Pt(35)
+            paragraph._pPr.insert(0, etree.Element("{http://schemas.openxmlformats.org/drawingml/2006/main}buNone"))
+
 def generate_pptx(songs, output_file):
-    prs = Presentation()
+    prs = pptx.Presentation()
 
     for song in songs:
         slide_layout = prs.slide_layouts[5]  # Utilise le layout pour un titre et un contenu
@@ -22,6 +30,11 @@ def generate_pptx(songs, output_file):
             else:
                 content = placeholders[0]
             content.text = '\n'.join(verse['lines'])
+            remove_bullet_point([content])
+            
+            # Add number and title of the song on top of each verse
+            top_content = placeholders[0]
+            top_content.text = f"{song['number']}. {song['title']}"
 
     prs.save(output_file)
 
@@ -36,3 +49,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
