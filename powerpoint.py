@@ -1,4 +1,5 @@
 import pptx
+from pptx.util import Inches
 from lxml import etree
 import json
 
@@ -10,7 +11,7 @@ def remove_bullet_point(placeholders):
             paragraph._pPr.insert(0, etree.Element("{http://schemas.openxmlformats.org/drawingml/2006/main}buNone"))
 
 def generate_pptx(songs, output_file):
-    prs = pptx.Presentation("theme.pptx")
+    prs = pptx.Presentation()
 
     for song in songs:
         slide_layout = prs.slide_layouts[5]  # Utilise le layout pour un titre et un contenu
@@ -19,6 +20,13 @@ def generate_pptx(songs, output_file):
         slide = prs.slides.add_slide(slide_layout)
         title = slide.shapes.title
         title.text = song['title']
+
+        # Add background image to the slide
+        img_path = "background_image.png"  # Specify the path to your background image
+        left = top = Inches(0)
+        pic = slide.shapes.add_picture(img_path, left, top, width=prs.slide_width, height=prs.slide_height)
+        slide.shapes._spTree.remove(pic._element)
+        slide.shapes._spTree.insert(2, pic._element)
 
         # Ajoute un slide pour chaque couplet de la chanson
         for verse in song['verses']:
@@ -36,6 +44,12 @@ def generate_pptx(songs, output_file):
             top_content = placeholders[0]
             top_content.text = f"{song['number']}. {song['title']}"
 
+            # Add background image to the verse slide
+            left = top = Inches(0)
+            pic = slide.shapes.add_picture(img_path, left, top, width=prs.slide_width, height=prs.slide_height)
+            slide.shapes._spTree.remove(pic._element)
+            slide.shapes._spTree.insert(2, pic._element)
+
     prs.save(output_file)
 
 def main():
@@ -49,4 +63,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
